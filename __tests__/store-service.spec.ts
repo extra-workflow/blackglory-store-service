@@ -150,8 +150,8 @@ describe('StoreService', () => {
       type: 'result'
     , value: 'value-2'
     }
-    store.set(0, record1)
-    store.set(1, record2)
+    await store.set(0, record1)
+    await store.set(1, record2)
 
     const result = await store.dump()
 
