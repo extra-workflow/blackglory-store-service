@@ -2077,6 +2077,16 @@ extra-utils@^5.1.0, extra-utils@^5.1.1, extra-utils@^5.15.0, extra-utils@^5.16.0
     justypes "^4.2.0"
     lodash-es "^4.17.21"
 
+extra-utils@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/extra-utils/-/extra-utils-6.1.0.tgz#b3d5d2b9840de3390fafd41041177d8e82f2fd3b"
+  integrity sha512-+B9PllBgAcp+FCbdovrwe/+Uhemd0QRDxeIiAogotkz4o/WeqdG+1DhLytHJD92vUcEykU64HIPAzLlibIeLMQ==
+  dependencies:
+    "@blackglory/errors" "^3.1.0"
+    justypes "^4.5.0"
+    lodash-es "^4.17.23"
+    return-style "^4.0.0"
+
 extra-websocket@^0.5.0:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/extra-websocket/-/extra-websocket-0.5.1.tgz#8647da2bf5c24efa66e3ec816e4d0dbc199b7225"
@@ -3055,7 +3065,7 @@ locate-path@^7.2.0:
   dependencies:
     p-locate "^6.0.0"
 
-lodash-es@^4.17.21:
+lodash-es@^4.17.21, lodash-es@^4.17.23:
   version "4.17.23"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.23.tgz#58c4360fd1b5d33afc6c0bbd3d1149349b1138e0"
   integrity sha512-kVI48u3PZr38HdYz98UmfPnXl2DXrpdctLrFLCd3kOx1xUkOmpFPx7gCWWM5MPkL/fD8zb+Ph0QzjGFs4+hHWg==
@@ -3775,6 +3785,13 @@ return-style@^3.0.0, return-style@^3.0.1:
   integrity sha512-PzP0aIcomRkdzrw+MGwHI4O+aCDpOgPBOUjGfr6fWi6vl2tu6/fC6egI6h+y7Tq54Aw8t3nza8jTDj2s6UNYOA==
   dependencies:
     "@blackglory/prelude" "^0.3.1"
+
+return-style@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/return-style/-/return-style-4.0.0.tgz#e427b367f05d479980e8dec3459a78a3687c318e"
+  integrity sha512-c7U1hPZtM4D16U23JvJ6atNCcwTveg1ihNOtgh/Mr+s8PmvX/UCqQvKC89VhJpMLxkq1twNVH/vnPxOEPuuuTg==
+  dependencies:
+    "@blackglory/prelude" "^0.4.0"
 
 rimraf@^2.6.3:
   version "2.7.1"
