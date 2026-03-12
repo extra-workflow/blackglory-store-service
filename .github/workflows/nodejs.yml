@@ -1,23 +1,19 @@
-name: Node.js CI
+name: Docker CI
 
 on: [push]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [22.x]
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install -g yarn
-    - run: yarn install
-    - run: yarn lint
-    - run: yarn build
+      - uses: actions/checkout@v2
+
+      - name: Run tests
+        run: |
+          if [ -f docker-compose.test.yml ]; then
+            docker compose --file docker-compose.test.yml build
+            docker compose --file docker-compose.test.yml run test
+          else
+            docker build . --file Dockerfile
+          fi

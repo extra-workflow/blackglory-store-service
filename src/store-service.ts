@@ -1,8 +1,9 @@
 import { IRecord, IStore } from 'extra-workflow'
 import { sortNumbersAscending } from 'extra-sort'
-import { isntUndefined, JSONValue } from '@blackglory/prelude'
+import { assert, isntUndefined, JSONValue } from '@blackglory/prelude'
 import { last, toString, pipeAsync } from 'extra-utils'
 import { StoreClient } from '@blackglory/store-js'
+import { map } from 'extra-promise'
 
 export class StoreService<T> implements IStore<T> {
   constructor(
@@ -58,6 +59,16 @@ export class StoreService<T> implements IStore<T> {
 
   async clear(): Promise<void> {
     await this.client.clearItemsByNamespace(this.namespace)
+  }
+
+  async dump(): Promise<Array<IRecord<T>>> {
+    const indexes = await this.getIndexesAscending()
+    return await map(indexes, async index => {
+      const record = await this.get(index)
+      assert(record)
+
+      return record
+    })
   }
 
   private async getIndexesAscending(): Promise<number[]> {
