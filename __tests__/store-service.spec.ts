@@ -78,7 +78,7 @@ describe('StoreService', () => {
       expect(result).toStrictEqual(record)
     })
 
-    test('event does not exist', async () => {
+    test('record does not exist', async () => {
       const store = new StoreService<JSONValue>(client, 'namespace', {
         fromJSONValue: passThrough
       , toJSONValue: passThrough
