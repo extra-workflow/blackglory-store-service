@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/extra-workflow/blackglory-store-service/compare/v0.1.2...v0.1.3) (2026-03-14)
+
+
+### Features
+
+* **pop:** remove items with revisions ([0361aec](https://github.com/extra-workflow/blackglory-store-service/commit/0361aec0552c589b6b98712df77de2e5ac3eca8b))
+
 ### [0.1.2](https://github.com/extra-workflow/blackglory-store-service/compare/v0.1.1...v0.1.2) (2026-03-12)
 
 
