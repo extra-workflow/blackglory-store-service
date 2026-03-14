@@ -6,14 +6,20 @@ import { StoreClient } from '@blackglory/store-js'
 import { map } from 'extra-promise'
 
 export class StoreService<T> implements IStore<T> {
+  private toJSONValue: (value: T) => JSONValue
+  private fromJSONValue: (json: JSONValue) => T
+
   constructor(
     private client: StoreClient
   , private namespace: string
-  , private options: {
+  , options: {
       toJSONValue: (value: T) => JSONValue
       fromJSONValue: (json: JSONValue) => T
     }
-  ) {}
+  ) {
+    this.toJSONValue = options.toJSONValue
+    this.fromJSONValue = options.fromJSONValue
+  }
 
   async set(index: number, record: IRecord<T>): Promise<void> {
     await this.client.setItem(
@@ -21,7 +27,7 @@ export class StoreService<T> implements IStore<T> {
     , this.indexToItemId(index)
     , {
         type: record.type
-      , value: this.options.toJSONValue(record.value)
+      , value: this.toJSONValue(record.value)
       } satisfies IRecord<JSONValue>
     )
   }
@@ -37,7 +43,7 @@ export class StoreService<T> implements IStore<T> {
 
       return {
         type: record.type
-      , value: this.options.fromJSONValue(record.value)
+      , value: this.fromJSONValue(record.value)
       }
     }
   }
@@ -63,6 +69,7 @@ export class StoreService<T> implements IStore<T> {
 
   async dump(): Promise<Array<IRecord<T>>> {
     const indexes = await this.getIndexesAscending()
+
     return await map(indexes, async index => {
       const record = await this.get(index)
       assert(record)
