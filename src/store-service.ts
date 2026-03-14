@@ -2,7 +2,7 @@ import { IRecord, IStore } from 'extra-workflow'
 import { sortNumbersAscending } from 'extra-sort'
 import { assert, isntUndefined, JSONValue } from '@blackglory/prelude'
 import { last, toString, pipeAsync } from 'extra-utils'
-import { StoreClient } from '@blackglory/store-js'
+import { IItem, StoreClient } from '@blackglory/store-js'
 import { map } from 'extra-promise'
 
 export class StoreService<T> implements IStore<T> {
@@ -38,28 +38,24 @@ export class StoreService<T> implements IStore<T> {
     , this.indexToItemId(index)
     )
 
-    if (item) {
-      const record = item.value as unknown as IRecord<JSONValue>
-
-      return {
-        type: record.type
-      , value: this.fromJSONValue(record.value)
-      }
-    }
+    if (item) return this.itemToRecord(item)
   }
 
   async pop(): Promise<IRecord<T> | undefined> {
     const lastIndex = last(await this.getIndexesAscending())
 
     if (isntUndefined(lastIndex)) {
-      const record = await this.get(lastIndex)
+      const item = await this.getItem(lastIndex)
 
-      await this.client.removeItem(
-        this.namespace
-      , this.indexToItemId(lastIndex)
-      )
+      if (item) {
+        await this.client.removeItem(
+          this.namespace
+        , this.indexToItemId(lastIndex)
+        , item.revision
+        )
 
-      return record
+        return this.itemToRecord(item)
+      }
     }
   }
 
@@ -95,5 +91,21 @@ export class StoreService<T> implements IStore<T> {
 
   private itemIdToIndex(itemId: string): number {
     return Number.parseInt(itemId, 10)
+  }
+
+  private async getItem(index: number): Promise<IItem | null> {
+    return await this.client.getItem(
+      this.namespace
+    , this.indexToItemId(index)
+    )
+  }
+
+  private itemToRecord(item: IItem): IRecord<T> {
+    const record = item.value as unknown as IRecord<JSONValue>
+
+    return {
+      type: record.type
+    , value: this.fromJSONValue(record.value)
+    }
   }
 }
