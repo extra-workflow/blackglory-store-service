@@ -37,11 +37,11 @@
     }
   },
   "devDependencies": {
-    "@blackglory/store-js": "^0.17.1",
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
-    "@eslint/js": "^9.33.0",
-    "eslint": "^9.33.0",
+    "@blackglory/store-js": "^0.18.1",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.3",
     "extra-workflow": "^0.5.0",
     "husky": "^4.3.8",
     "npm-run-all": "^4.1.5",
@@ -52,9 +52,9 @@
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.39.1",
     "typescript-transform-paths": "^3.5.5",
-    "vite": "^7.1.2",
-    "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.2.4"
+    "vite": "^8.0.0",
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^4.1.0"
   },
   "dependencies": {
     "@blackglory/prelude": "^0.4.0",
@@ -63,7 +63,7 @@
     "extra-utils": "^6.1.0"
   },
   "peerDependencies": {
-    "@blackglory/store-js": "^0.17.1",
+    "@blackglory/store-js": "^0.17.1 || ^0.18.0",
     "extra-workflow": "^0.5.0"
   }
 }
