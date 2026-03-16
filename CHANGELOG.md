@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/extra-workflow/blackglory-store-service/compare/v0.1.3...v0.1.4) (2026-03-16)
+
+
+### Features
+
+* add support for `@blackglory/store-js@^0.18.0` ([8924e54](https://github.com/extra-workflow/blackglory-store-service/commit/8924e544431ead15df94b5eef95b8a4e6203cff9))
+
 ### [0.1.3](https://github.com/extra-workflow/blackglory-store-service/compare/v0.1.2...v0.1.3) (2026-03-14)
 
 
